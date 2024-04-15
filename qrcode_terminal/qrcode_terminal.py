@@ -17,9 +17,59 @@ parser = OptionParser()
 parser.add_option('-d', '--data', dest='data', help='data to be paser to QRCode')
 parser.add_option('-s', '--size', type='choice', choices = ['s','m','l','S','M','L'], dest='size',default='s', help='QRCode size,you can choose S/M/L')
 
-BLOCK = ['█', '▀', '▄', ' ']
 
-def qr_terminal_str(str,version=1):
+def render_2by1(qr_map):
+    BLOCKS = ['█', '▀', '▄', ' ']
+    output = ""
+    for row in range(0, len(qr_map), 2):
+        for col in range(0, len(qr_map[0])):
+            pixel_cur = qr_map[row][col] 
+            pixel_below = 1
+            if row < len(qr_map) - 1:
+                pixel_below = qr_map[row+1][col]
+            pixel_encode = pixel_cur << 1 | pixel_below
+            output += BLOCKS[pixel_encode]
+        output += '\n'
+    return output[:-1]
+
+def render_3by2(qr_map):
+    BLOCKS = [
+        '█', '🬝', '🬬', '🬎', '🬴', '🬕', '🬥', '🬆', 
+
+        '🬸', '🬙', '🬨', '🬊', '🬰', '🬒', '🬡', '🬂', 
+
+        '🬺', '🬛', '🬪', '🬌', '🬲', '▌', '🬣', '🬄', 
+
+        '🬶', '🬗', '🬧', '🬈', '🬮', '🬐', '🬟', '🬀',
+
+        '🬻', '🬜', '🬫', '🬍', '🬳', '🬔', '🬤', '🬅',
+
+        '🬷', '🬘', '▐', '🬉', '🬯', '🬑', '🬠', '🬁',
+
+        '🬹', '🬚', '🬩', '🬋', '🬱', '🬓', '🬢', '🬃',
+
+        '🬵', '🬖', '🬦', '🬇', '🬭', '🬏', '🬞', ' ',
+    ]
+
+    output = ""
+    def get_qrmap(r, c):
+        return 1 if r >= len(qr_map) or c >= len(qr_map[0]) else qr_map[r][c]
+
+    for row in range(0, len(qr_map), 3):
+        for col in range(0, len(qr_map[0]), 2):
+            pixel5 = qr_map[row][col] 
+            pixel4 = get_qrmap(row, col + 1)
+            pixel3 = get_qrmap(row + 1, col)
+            pixel2 = get_qrmap(row + 1, col + 1)
+            pixel1 = get_qrmap(row + 2, col)
+            pixel0 = get_qrmap(row + 2, col + 1)
+            pixel_encode = pixel5 << 5 | pixel4 << 4 | pixel3 << 3 | pixel2 << 2 | pixel1 << 1 | pixel0
+            output += BLOCKS[pixel_encode]
+        output += '\n'
+
+    return output[:-1]
+
+def qr_terminal_str(str, version = 1, render = render_2by1):
     qr = qrcode.QRCode(version)
     qr.add_data(str)
     qr.make()
@@ -31,20 +81,10 @@ def qr_terminal_str(str,version=1):
     for row_id, row in enumerate(qr.modules):
         for col_id, pixel in enumerate(row):
             qr_map[row_id+1][col_id+1] = 1 if pixel else 0
-    output = ""
-    for row in range(0, len(qr_map), 2):
-        for col in range(0, len(qr_map[0])):
-            pixel_cur = qr_map[row][col] 
-            pixel_below = 1
-            if row < len(qr_map) - 1:
-                pixel_below = qr_map[row+1][col]
-            pixel_encode = pixel_cur << 1 | pixel_below
-            output += BLOCK[pixel_encode]
-        output += '\n'
-    return output[:-1]
+    return render(qr_map)
 
-def draw(str,version=1):
-    output = qr_terminal_str(str,version)
+def draw(str,version=1, render = render_2by1):
+    output = qr_terminal_str(str,version=version,render=render)
     print (output)
 
 
