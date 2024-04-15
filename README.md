@@ -2,16 +2,13 @@
 You can draw QR codes in your terminal by Python:
 ![Py QrCode](./example/screenshot_2by1.png)
 
-## TODO
-- [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
-
 ## Install
 Can be installed with pip:
 ``` shell
 pip install git+https://github.com/glyh/qrterm
 ```
 
-## Useage
+## Usage
 
 ### As Library
 ```python
@@ -34,3 +31,7 @@ qrterm.draw('http://www.baidu.com', render=qrterm.render_3by2)
 ```
 
 ![Py QrCode](./example/screenshot_3by2.png)
+
+## TODO
+- [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
+
