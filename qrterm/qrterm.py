@@ -75,10 +75,10 @@ def qr_terminal_str(str, version = 1, render = render_2by1):
     qr_width, qr_height = len(qr.modules), len(qr.modules[0])
     qr_width += 2
     qr_height += 2
-    qr_map = [[0 for _ in range(qr_width)] for _ in range(qr_height)]
+    qr_map = [[False for _ in range(qr_width)] for _ in range(qr_height)]
     for row_id, row in enumerate(qr.modules):
         for col_id, pixel in enumerate(row):
-            qr_map[row_id+1][col_id+1] = 1 if pixel else 0
+            qr_map[row_id+1][col_id+1] = pixel
     return render(qr_map)
 
 def draw(str,version=1, render = render_2by1):
