@@ -24,6 +24,6 @@ setup(
             'qrterm-py= qrterm.qrterm:draw_cmd',
         ],
     },
-    install_requires=['Pillow', 'qrcode'],
+    install_requires=['qrcode'],
     include_package_data=True,
 )
