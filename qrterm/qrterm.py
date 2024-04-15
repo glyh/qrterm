@@ -72,10 +72,9 @@ def qr_terminal_str(str, version = 1, render = render_2by1):
     qr.add_data(str)
     qr.make()
     qr_map = []
-    qr_width, qr_height = len(qr.modules), len(qr.modules[0])
-    qr_width += 2
-    qr_height += 2
-    qr_map = [[False for _ in range(qr_width)] for _ in range(qr_height)]
+    qr_row = len(qr.modules) + 2
+    qr_col = len(qr.modules[0]) + 2
+    qr_map = [[False for _ in range(qr_col)] for _ in range(qr_row)]
     for row_id, row in enumerate(qr.modules):
         for col_id, pixel in enumerate(row):
             qr_map[row_id+1][col_id+1] = pixel

@@ -39,4 +39,4 @@ qrterm.draw('http://www.baidu.com', render=qrterm.render_3by2)
 
 ## TODO
 - [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
-
+- [ ] Support ASCII only clients
