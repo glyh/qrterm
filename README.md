@@ -1,6 +1,9 @@
 # Python QRCode Terminal
 You can draw QR codes in your terminal by Python:
-![Py QrCode](./example/screenshot_2by1.png)
+
+<p align="center">
+    <img src="./example/screenshot_2by1.png" width="50%" />
+</p>
 
 ## Install
 Can be installed with pip:
@@ -30,7 +33,9 @@ import qrterm
 qrterm.draw('http://www.baidu.com', render=qrterm.render_3by2)
 ```
 
-![Py QrCode](./example/screenshot_3by2.png)
+<p align="center">
+    <img src="./example/screenshot_3by2.png" width="50%" />
+</p>
 
 ## TODO
 - [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
