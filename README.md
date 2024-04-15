@@ -2,6 +2,9 @@
 You can draw QR codes in your terminal by Python:
 ![Py QrCode](./example/screenshot.png)
 
+## TODO
+- [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
+
 ## Install Dependencies
 You need install these:
 ```shell    
