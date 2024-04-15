@@ -5,18 +5,10 @@ You can draw QR codes in your terminal by Python:
 ## TODO
 - [ ] See [Unicode Block Elements](https://en.wikipedia.org/wiki/Block_Elements) for more compression.
 
-## Install Dependencies
-You need install these:
-```shell    
-yum install -y python-devel zlib-devel libjpeg-turbo-devel
-pip install pillow qrcode
-```
-
 ## Install
 Can be installed with pip:
-<!-- TODO -->
 ``` shell
-pip install qrcode-terminal
+pip install git+https://github.com/glyh/qrterm
 ```
 
 ## Useage
