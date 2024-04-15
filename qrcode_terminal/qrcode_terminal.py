@@ -17,32 +17,31 @@ parser = OptionParser()
 parser.add_option('-d', '--data', dest='data', help='data to be paser to QRCode')
 parser.add_option('-s', '--size', type='choice', choices = ['s','m','l','S','M','L'], dest='size',default='s', help='QRCode size,you can choose S/M/L')
 
+BLOCK = ['█', '▀', '▄', ' ']
 
 def qr_terminal_str(str,version=1):
-    if platform.system() == "Windows":
-        white_block = '▇'
-        black_block = '  '
-        new_line = '\n'
-    else:
-        white_block = '\033[0;37;47m  '
-        black_block = '\033[0;37;40m  '
-        new_line = '\033[0m\n'
-
     qr = qrcode.QRCode(version)
     qr.add_data(str)
     qr.make()
-    output = white_block*(qr.modules_count+2) + new_line
-    for mn in qr.modules:
-        output += white_block
-        for m in mn:
-            if m:
-                output += black_block
-            else:
-                output += white_block
-        output += white_block + new_line
-    output += white_block*(qr.modules_count+2) + new_line
-    return output
-
+    qr_map = []
+    qr_width, qr_height = len(qr.modules), len(qr.modules[0])
+    qr_width += 2
+    qr_height += 2
+    qr_map = [[0 for _ in range(qr_width)] for _ in range(qr_height)]
+    for row_id, row in enumerate(qr.modules):
+        for col_id, pixel in enumerate(row):
+            qr_map[row_id+1][col_id+1] = 1 if pixel else 0
+    output = ""
+    for row in range(0, len(qr_map), 2):
+        for col in range(0, len(qr_map[0])):
+            pixel_cur = qr_map[row][col] 
+            pixel_below = 1
+            if row < len(qr_map) - 1:
+                pixel_below = qr_map[row+1][col]
+            pixel_encode = pixel_cur << 1 | pixel_below
+            output += BLOCK[pixel_encode]
+        output += '\n'
+    return output[:-1]
 
 def draw(str,version=1):
     output = qr_terminal_str(str,version)
