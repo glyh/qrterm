@@ -8,4 +8,4 @@
 @time: 2017/2/10 16:33
 '''
 
-from .qrcode_terminal import *
+from .qrterm import *

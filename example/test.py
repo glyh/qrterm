@@ -7,8 +7,8 @@
 @file: test.py
 @time: 2017/2/10 16:38
 '''
-import qrcode_terminal
-qrcode_terminal.draw('https://www.baidu.com')
+import qrterm
+qrterm.draw('https://www.baidu.com')
 
 
 

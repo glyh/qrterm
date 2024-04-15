@@ -14,6 +14,7 @@ pip install pillow qrcode
 
 ## Install
 Can be installed with pip:
+<!-- TODO -->
 ``` shell
 pip install qrcode-terminal
 ```
@@ -22,22 +23,22 @@ pip install qrcode-terminal
 
 ### As Library
 ```python
-import qrcode_terminal
-qrcode_terminal.draw('http://www.baidu.com')
+import qrterm
+qrterm.draw('http://www.baidu.com')
 ```
 
 ### In Terminal
 ``` shell
-qrcode-terminal-py -d http://www.baidu.com
-echo "http://www.baidu.com" | qrcode-terminal-py
+qrterm-py -d http://www.baidu.com
+echo "http://www.baidu.com" | qrterm-py
 ```
 
 ### Scaling
 Out of the box we use 2 by 1 unicode blocks, you can also opt-in to use a 3 by 2 unicode block to make the QR-code even smaller:
 
 ```
-import qrcode_terminal
-qrcode_terminal.draw('http://www.baidu.com', render=qrcode_terminal.render_3by2)
+import qrterm
+qrterm.draw('http://www.baidu.com', render=qrterm.render_3by2)
 ```
 
 ![Py QrCode](./example/screenshot_3by2.png)

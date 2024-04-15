@@ -10,18 +10,18 @@
 from setuptools import setup
 
 setup(
-    name='qrcode-terminal',
+    name='qrterm',
     version='0.8',
     license='MIT',
     author_email='840652591@qq.com',
-    url='https://github.com/alishtory/qrcode-terminal',
+    url='https://github.com/alishtory/qrterm',
     description='Python QRCode Terminal',
     platforms=['any'],
-    py_modules= ['qrcode_terminal'],
-    packages= ['qrcode_terminal'],
+    py_modules= ['qrterm'],
+    packages= ['qrterm'],
     entry_points={
         'console_scripts': [
-            'qrcode-terminal-py= qrcode_terminal.qrcode_terminal:draw_cmd',
+            'qrterm-py= qrterm.qrterm:draw_cmd',
         ],
     },
     install_requires=['Pillow', 'qrcode'],

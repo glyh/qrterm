@@ -1,12 +1,10 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 '''
-@author: ‘wang_pc‘
+@author: 'wang_pc', 'Yihang Liu'
 @site: 
-@software: PyCharm
-@file: qrcode_terminal.py
+@file: qrterm.py
 @time: 2017/2/10 16:38
-@Update: 2018/2/6 21:58
 '''
 import qrcode
 from optparse import OptionParser
